@@ -1,0 +1,113 @@
+<div class="centered-content">
+  <div class="sign-up-box">
+    <div class="sign-up-text">
+      <h1 class="title has-text-dark">Sign up</h1>
+    </div>
+    <div class="field">
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control has-icons-left">
+          <input
+            #usernameInput
+            class="input has-background-light"
+            type="text"
+            placeholder="Username"
+            [(ngModel)]="usernameInputText"
+            required
+          />
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+        </div>
+        <div *ngIf="usernameInputText.length === 0">
+          <p class="help is-success">&nbsp;</p>
+        </div>
+        <div *ngIf="!isUsernameValidated() && usernameInputText.length !== 0">
+          <p class="help is-danger">Username must be at least 4 characters</p>
+        </div>
+        <div *ngIf="isUsernameValidated() && usernameInputText.length !== 0">
+          <p class="help is-success">Verified</p>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Password</label>
+        <p class="control has-icons-left">
+          <input
+            #passwordInput
+            class="input has-background-light"
+            type="password"
+            placeholder="Password"
+            [(ngModel)]="passwordInputText"
+            required
+          />
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+        <div *ngIf="passwordInputText.length === 0">
+          <p class="help is-success">&nbsp;</p>
+        </div>
+        <div *ngIf="!isPasswordValidated() && passwordInputText.length !== 0">
+          <p class="help is-danger">
+            Password must have a length of 8 characters
+          </p>
+        </div>
+        <div *ngIf="isPasswordValidated() && passwordInputText.length !== 0">
+          <p class="help is-success">
+            Verified
+          </p>
+        </div>
+      </div>
+      <div class="field">
+        <p class="control has-icons-left">
+          <input
+            #passwordConfirmInput
+            class="input has-background-light"
+            type="password"
+            placeholder="Confirm Password"
+            [(ngModel)]="passwordVerifyInputText"
+            required
+          />
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+        <div *ngIf="passwordVerifyInputText.length === 0">
+          <p class="help is-success">&nbsp;</p>
+        </div>
+        <div *ngIf="!isPasswordMatch() && passwordVerifyInputText.length !== 0">
+          <p class="help is-danger">Passwords do not match</p>
+        </div>
+        <div *ngIf="isPasswordMatch() && passwordVerifyInputText.length !== 0">
+          <p class="help is-success">Verified</p>
+        </div>
+        <div *ngIf="errorText.length !== 0">
+          <p class="help is-danger">
+            {{ errorText }}
+          </p>
+        </div>
+        <p *ngIf="errorText.length === 0">&nbsp;</p>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link is-light" (click)="onCancel()">
+            Cancel
+          </button>
+        </div>
+        <div class="control">
+          <button
+            class="button is-link"
+            (click)="onSubmit(usernameInput.value, passwordInput.value)"
+            [disabled]="!isFormValidated()"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+      <br />
+      <p class="has-text-grey">
+        Already have an account? <a routerLink="/login">Login</a> now!
+      </p>
+    </div>
+  </div>
+</div>

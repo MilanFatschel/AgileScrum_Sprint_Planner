@@ -1,0 +1,26 @@
+<div class="centered-content">
+  <div class="modal-box">
+    <h1 class="title">
+      Create a new story
+    </h1>
+
+    <input
+      #storyTitleInput
+      class="input has-background-light is-medium"
+      type="text"
+      placeholder="Enter your new story name..."
+      [(ngModel)]="newStoryInputText"
+    />
+    <br /><br />
+    <div class="buttons is-right">
+      <button class="button is-medium" (click)="onCancelClick()">Cancel</button>
+      <button
+        class="button is-primary has-text-white is-medium"
+        (click)="onCreateStoryClick(storyTitleInput.value)"
+        [disabled]="newStoryInputText.length === 0"
+      >
+        Create
+      </button>
+    </div>
+  </div>
+</div>

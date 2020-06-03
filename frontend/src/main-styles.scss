@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700|Nunito:400,700");
+
+$turquoise: #44ddd0;
+$green: #27d7a1;
+$light-green: #45f69e;
+$dark-green: rgb(0, 100, 80);
+$light: #f8f8f8;
+
+// Bulma Global Values
+$family-sans-serif: "Nunito", "sans-serif";
+$primary: green;
+$link: $light-green;
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+
+// Global styles
+html {
+  background: linear-gradient(to right top, $turquoise, $green);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}

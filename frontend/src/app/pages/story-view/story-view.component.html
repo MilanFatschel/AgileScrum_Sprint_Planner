@@ -1,0 +1,101 @@
+<div class="centered-content">
+  <div class="task-manager-container">
+    <div class="side-bar has-background-white">
+      <h1 class="title has-text-primaary">
+        Sprints
+      </h1>
+      <div class="list-menu">
+        <div class="sprint-scroll-container">
+          <a
+            class="list-menu-item"
+            *ngFor="let sprint of sprints"
+            [routerLink]="['/sprints', sprint._id]"
+            routerLinkActive="is-active"
+          >
+            <p>{{ sprint.title }}</p>
+            <div class="sprint-buttons">
+              <button
+                class="button is-danger side-bar-delete-button"
+                (click)="onDeleteSprintClick(sprint._id)"
+              >
+                <div class="icon">
+                  <i class="fas fa-trash"></i>
+                </div>
+              </button>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <button
+        class="button is-primary has-text-white sprint-add-button"
+        (click)="onAddSprintClick()"
+      >
+        + New Sprint
+      </button>
+    </div>
+    <div class="story-container">
+      <div class="top-bar">
+        <h1 class="title">
+          Stories
+        </h1>
+        <button
+          class="button is-primary has-text-white story-add-button"
+          (click)="onAddStoryClick()"
+          [disabled]="!stories"
+        >
+          + New Story
+        </button>
+        <div class="dropdown is-hoverable is-right">
+          <div class="dropdown-trigger">
+            <button
+              class="button"
+              aria-haspopup="true"
+              aria-controls="dropdown-menu4"
+            >
+              <span class="icon is-small">
+                <i class="fas fa-cog" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+            <div class="dropdown-content">
+              <a class="dropdown-item">
+                Team Manager (Coming Soon)
+              </a>
+              <a
+                (click)="onLogoutClick()"
+                class="dropdown-item has-text-danger"
+              >
+                Logout
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!stories" class="empty-text-container">
+        <h3 class="empty-text">Select a sprint to get started!</h3>
+      </div>
+      <div *ngIf="stories && stories.length === 0" class="empty-text-container">
+        <h3 class="empty-text">
+          There are currently no stories for this sprint, click the "+ New
+          Story" button to create one!
+        </h3>
+      </div>
+      <div
+        *ngIf="stories && stories.length !== 0"
+        class="stories-list-container"
+      >
+        <div class="story-scroll-container">
+          <div *ngFor="let story of stories">
+            <app-story
+              [story]="story"
+              (storyDeleted)="removeDeletedStory($event)"
+            >
+            </app-story>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="modal-box">
+  <h1 class="title">
+    Edit Task
+  </h1>
+  <div>Task:</div>
+  <input
+    #taskTitleInput
+    class="input has-background-light is-medium"
+    type="text"
+    value="{{ this.data.task.title }}"
+    placeholder="Enter your task..."
+    [(ngModel)]="titleInputText"
+    required
+  />
+  <br /><br />
+  <div>Assign To:</div>
+  <input
+    #taskAssignInput
+    class="input has-background-light is-medium"
+    type="text"
+    value="{{ this.data.task.assignedName }}"
+    placeholder="Assign a name to the task..."
+    [(ngModel)]="nameInputText"
+    required
+  />
+  <br /><br />
+  <label>Hours: </label>
+  <input
+    #hoursInput
+    type="number"
+    name="input"
+    min="0"
+    max="999"
+    value="{{ this.data.task.hours }}"
+    [(ngModel)]="hoursInputNumber"
+    required
+  />
+  <br /><br />
+  <div class="buttons is-right">
+    <button class="button is-medium" (click)="onCancelClick()">Cancel</button>
+    <button
+      class="button is-primary has-text-white is-medium"
+      (click)="
+        onSaveClick(
+          taskTitleInput.value,
+          taskAssignInput.value,
+          hoursInput.value
+        )
+      "
+      [disabled]="
+        titleInputText == '' || nameInputText == '' || !hoursInputNumber
+      "
+    >
+      Save
+    </button>
+  </div>
+</div>

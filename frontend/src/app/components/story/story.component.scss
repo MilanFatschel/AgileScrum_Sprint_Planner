@@ -1,0 +1,113 @@
+.story {
+  display: flex;
+  flex-grow: 1;
+  min-width: 0;
+  min-height: 0;
+  padding-bottom: 20px;
+
+  &.hover {
+    .story-buttons {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .story-buttons {
+    transition: opacity 0.2s, transform 0.2s;
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  .story-wrapper {
+    display: flex;
+    flex-grow: 1;
+    border-bottom: solid 1px rgb(202, 202, 202);
+    padding-top: 5px;
+    padding-bottom: 30px;
+
+    .story-columns {
+      display: flex;
+      flex-grow: 1;
+
+      .story-column {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-basis: 0; // to force the columns to all be the same size, regardless of content
+
+        min-width: 100px;
+        max-width: 100%;
+        margin: 10px;
+        padding: 15px;
+
+        border-radius: 4px;
+
+        background: rgba(white, 0.5);
+
+        &:not(:first-child) {
+          margin-left: 0;
+        }
+
+        .column-title {
+          font-size: 20px;
+          font-weight: 800;
+          font-family: "Lato", sans-serif;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}
+
+.story-bar {
+  padding: 5px 5px;
+  display: flex;
+  justify-content: space-between;
+
+  .story-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+  }
+
+  .story-bar-delete-button {
+    font-size: 11px;
+  }
+}
+
+.tasks-container {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.task {
+  height: 100%;
+  width: 100%;
+  padding: 15px 12px;
+  background: white;
+  border: solid 1px rgb(202, 202, 202);
+  border-radius: 4px;
+
+  margin-bottom: 15px;
+
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.05),
+    0 3px 14px 2px rgba(0, 0, 0, 0.05);
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.tasks-container.cdk-drop-list-dragging .task:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

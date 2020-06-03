@@ -1,0 +1,86 @@
+<div *ngIf="isLoaded === 3">
+  <div class="story-bar">
+    <div class="story-name">{{ story.title }}</div>
+    <button
+      class="button is-danger story-bar-delete-button"
+      (click)="onStoryDeleteClick()"
+    >
+      <div class="icon">
+        <i class="fas fa-trash"></i>
+      </div>
+    </button>
+  </div>
+  <div class="story">
+    <div class="story-wrapper">
+      <div class="story-columns" cdkDropListGroup>
+        <div class="story-column">
+          <div class="column-title">New ({{ totalHoursNew }} hours)</div>
+          <div
+            class="tasks-container"
+            cdkDropList
+            id="1"
+            [cdkDropListData]="newTasks"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div *ngFor="let newTask of newTasks">
+              <div class="task" cdkDrag>
+                <app-task
+                  [task]="newTask"
+                  (taskDeleted)="removeDeletedTask($event)"
+                  (taskEdited)="onTaskEdited($event)"
+                ></app-task>
+              </div>
+            </div>
+            <button class="button task-add-button" (click)="onAddTaskClick()">
+              <i class="material-icons">add</i>
+            </button>
+          </div>
+        </div>
+        <div class="story-column">
+          <div class="column-title">
+            In Progress ({{ totalHoursInProgress }} hours)
+          </div>
+          <div
+            class="tasks-container"
+            cdkDropList
+            id="2"
+            [cdkDropListData]="inProgressTasks"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div *ngFor="let ipTask of inProgressTasks">
+              <div class="task" cdkDrag>
+                <app-task
+                  [task]="ipTask"
+                  (taskDeleted)="removeDeletedTask($event)"
+                  (taskEdited)="onTaskEdited($event)"
+                ></app-task>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="story-column">
+          <div class="column-title">
+            Done
+          </div>
+          <div
+            class="tasks-container"
+            cdkDropList
+            id="3"
+            [cdkDropListData]="doneTasks"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div *ngFor="let doneTask of doneTasks">
+              <div class="task" cdkDrag>
+                <app-task
+                  [task]="doneTask"
+                  (taskDeleted)="removeDeletedTask($event)"
+                  (taskEdited)="onTaskEdited($event)"
+                ></app-task>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

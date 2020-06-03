@@ -1,0 +1,38 @@
+<div class="task-card">
+  <div class="task-text-container">
+    <div class="task-text">
+      {{ task.title }}
+    </div>
+    <div class="task-buttons">
+      <button
+        class="button is-danger delete-button"
+        (click)="onDeleteTaskClick()"
+        style="margin-bottom: 3px; margin-left: 5px; font-size: 11px;"
+      >
+        <div class="icon">
+          <i class="fas fa-trash"></i>
+        </div>
+      </button>
+      <button
+        class="button"
+        (click)="onEditTaskClick()"
+        style="
+          margin-bottom: 3px;
+          margin-left: 5px;
+          font-size: 11px;
+          float: right;
+        "
+      >
+        <div class="icon">
+          <i class="fas fa-edit"></i>
+        </div>
+      </button>
+    </div>
+  </div>
+  <div style="font-weight: bold; font-size: small;">
+    Hours: {{ task.hours }}
+  </div>
+  <div style="font-weight: bold; font-size: small;">
+    Assigned: {{ task.assignedName }}
+  </div>
+</div>

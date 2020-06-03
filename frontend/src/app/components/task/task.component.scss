@@ -1,0 +1,35 @@
+.task-card {
+  .task-text-container {
+    display: flex;
+    width: 100%;
+
+    .task-text {
+      display: flex;
+      flex-grow: 1;
+      width: 100%;
+      word-break: break-word;
+    }
+  }
+  & {
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &:hover {
+      .task-buttons {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+
+  .task-buttons {
+    width: 11%;
+    transition: opacity 0.2s, transform 0.2s;
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
