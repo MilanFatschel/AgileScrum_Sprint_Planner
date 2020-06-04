@@ -449,30 +449,36 @@ app.post("/users", (req, res) => {
   let body = req.body;
   let newUser = new User(body);
 
-  newUser
-    .save()
-    .then(() => {
-      return newUser.createSession();
-    })
-    .then((refreshToken) => {
-      // Session created successfully - refreshToken returned.
-      // now we geneate an access auth token for the user
+  User.findOne({ username: body.username }).then((user) => {
+    // If the user with the username already exists return a 403
+    if (user) return res.send({ message: 403 });
+    else {
+      newUser
+        .save()
+        .then(() => {
+          return newUser.createSession();
+        })
+        .then((refreshToken) => {
+          // Session created successfully - refreshToken returned.
+          // now we geneate an access auth token for the user
 
-      return newUser.generateAccessAuthToken().then((accessToken) => {
-        // access auth token generated successfully, now we return an object containing the auth tokens
-        return { accessToken, refreshToken };
-      });
-    })
-    .then((authTokens) => {
-      // Now we construct and send the response to the user with their auth tokens in the header and the user object in the body
-      res
-        .header("x-refresh-token", authTokens.refreshToken)
-        .header("x-access-token", authTokens.accessToken)
-        .send(newUser);
-    })
-    .catch((e) => {
-      res.status(400).send(e);
-    });
+          return newUser.generateAccessAuthToken().then((accessToken) => {
+            // access auth token generated successfully, now we return an object containing the auth tokens
+            return { accessToken, refreshToken };
+          });
+        })
+        .then((authTokens) => {
+          // Now we construct and send the response to the user with their auth tokens in the header and the user object in the body
+          res
+            .header("x-refresh-token", authTokens.refreshToken)
+            .header("x-access-token", authTokens.accessToken)
+            .send(newUser);
+        })
+        .catch((e) => {
+          res.status(400).send(e);
+        });
+    }
+  });
 });
 
 /**
@@ -505,8 +511,7 @@ app.post("/users/login", (req, res) => {
               .send(user);
           });
       } else {
-        console.log("NULL");
-        res.status(400);
+        res.send({ message: 404 });
       }
     })
     .catch((e) => {
@@ -540,17 +545,13 @@ let deleteStoriesFromSprint = (_sprintId) => {
   });
   Story.deleteMany({
     _sprintId,
-  }).then(() => {
-    console.log("Stories and tasks were deleted from " + _sprintId);
-  });
+  }).then(() => {});
 };
 
 let deleteTasksFromStory = (_storyId) => {
   Task.deleteMany({
     _storyId,
-  }).then(() => {
-    console.log("Tasks were deleted from " + _storyId);
-  });
+  }).then(() => {});
 };
 
 app.listen(3000, () => {

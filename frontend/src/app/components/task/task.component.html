@@ -32,7 +32,14 @@
   <div style="font-weight: bold; font-size: small;">
     Hours: {{ task.hours }}
   </div>
-  <div style="font-weight: bold; font-size: small;">
+  <div
+    style="
+      font-weight: bold;
+      font-size: small;
+      word-break: break-word;
+      word-break: break-all;
+    "
+  >
     Assigned: {{ task.assignedName }}
   </div>
 </div>

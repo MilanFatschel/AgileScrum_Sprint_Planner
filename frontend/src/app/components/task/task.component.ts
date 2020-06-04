@@ -23,9 +23,7 @@ export class TaskComponent implements OnInit {
     this.taskDeleted.emit(this.task);
     this.sprintService
       .deleteTask(this.task._sprintId, this.task._storyId, this.task._id)
-      .subscribe((res: any) => {
-        console.log(res);
-      });
+      .subscribe((res: any) => {});
   }
 
   onEditTaskClick() {

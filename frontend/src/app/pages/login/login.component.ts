@@ -23,17 +23,18 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const dialogRef = this.dialog.open(WelcomeComponent, {});
+    const dialogRef = this.dialog.open(WelcomeComponent);
   }
 
   onLoginButtonClicked(username: string, password: string) {
     this.authService
       .login(username, password)
       .subscribe((res: HttpResponse<any>) => {
-        if (res.body) {
-          this.router.navigate(['/sprints']);
-        } else {
+        if (res.body.message == 404) {
           this.errorText = 'User not found. Please check your credentials.';
+          return;
+        } else if (res.status == 200) {
+          this.router.navigate(['/sprints']);
         }
       });
   }

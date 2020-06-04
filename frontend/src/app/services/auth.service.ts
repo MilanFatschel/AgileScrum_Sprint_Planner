@@ -19,13 +19,13 @@ export class AuthService {
       shareReplay(),
       tap((res: HttpResponse<any>) => {
         // the auth tokens will be in the header of this response
+        if (res.body.message == 404) return;
         if (res.status == 200) {
           this.setSession(
             res.body._id,
             res.headers.get('x-access-token'),
             res.headers.get('x-refresh-token')
           );
-          console.log('Succesfully logged in.');
         }
       })
     );
@@ -34,9 +34,7 @@ export class AuthService {
   signup(username: string, password: string) {
     return this.webService.signup(username, password).pipe(
       shareReplay(),
-      tap((res: HttpResponse<any>) => {
-        console.log('Succesfully Signed up.');
-      })
+      tap((res: HttpResponse<any>) => {})
     );
   }
 

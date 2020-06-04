@@ -80,7 +80,6 @@ export class StoryViewComponent implements OnInit {
       if (confirmedDelete) {
         this.sprintService.deleteSprint(sprintId).subscribe((res: any) => {
           this.router.navigate(['/sprints']);
-          console.log(res);
         });
       }
     });

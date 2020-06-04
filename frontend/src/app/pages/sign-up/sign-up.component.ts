@@ -58,15 +58,14 @@ export class SignUpComponent implements OnInit {
     this.authService
       .signup(username, password)
       .subscribe((res: HttpResponse<any>) => {
-        if (res.status == 200) {
-          console.log(res);
+        if (res.body.message == 403) {
+          this.errorText = 'Username taken. Please choose another.';
+          return;
+        } else if (res.status == 200) {
           const dialogRef = this.dialog.open(SignUpSuccessComponent);
           dialogRef.afterClosed().subscribe(() => {
             this.router.navigate(['/login']);
           });
-        } else {
-          this.errorText =
-            'The username requested has already been taken. Please choose another.';
         }
       });
   }

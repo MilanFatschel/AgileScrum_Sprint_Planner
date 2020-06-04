@@ -119,7 +119,6 @@ UserSchema.statics.findByCredentials = function (username, password) {
   let User = this;
   return User.findOne({ username }).then((user) => {
     if (!user) return null;
-
     return new Promise((resolve, reject) => {
       bcrypt.compare(password, user.password, (err, res) => {
         if (res) {
@@ -128,6 +127,8 @@ UserSchema.statics.findByCredentials = function (username, password) {
           reject();
         }
       });
+    }).catch(() => {
+      return null;
     });
   });
 };

@@ -99,7 +99,6 @@ export class StoryComponent implements OnInit {
   }
 
   removeDeletedTask(event) {
-    console.log('Event id' + event._id);
     var deletedTask = event;
     if (deletedTask.state === '1') {
       this.newTasks = this.newTasks.filter(
@@ -168,9 +167,7 @@ export class StoryComponent implements OnInit {
     this.storyDeleted.emit(this.story);
     this.sprintService
       .deleteStory(this.story._sprintId, this.story._id)
-      .subscribe((res: any) => {
-        console.log(res);
-      });
+      .subscribe((res: any) => {});
   }
 
   onAddTaskClick() {
@@ -214,9 +211,7 @@ export class StoryComponent implements OnInit {
           itemToCreate._storyId,
           itemToCreate._id
         )
-        .subscribe((updatedTask: Task[]) => {
-          console.log(updatedTask);
-        });
+        .subscribe((updatedTask: Task[]) => {});
     } else if (prevId === '2') {
       var itemToCreate = this.inProgressTasks[itemIndex];
       itemToCreate.state = currId;
@@ -227,9 +222,7 @@ export class StoryComponent implements OnInit {
           itemToCreate._storyId,
           itemToCreate._id
         )
-        .subscribe((updatedTask: Task[]) => {
-          console.log(updatedTask);
-        });
+        .subscribe((updatedTask: Task[]) => {});
     } else if (prevId === '3') {
       var itemToCreate = this.doneTasks[itemIndex];
       itemToCreate.state = currId;
@@ -240,9 +233,7 @@ export class StoryComponent implements OnInit {
           itemToCreate._storyId,
           itemToCreate._id
         )
-        .subscribe((updatedTask: Task[]) => {
-          console.log(updatedTask);
-        });
+        .subscribe((updatedTask: Task[]) => {});
     }
   }
 }
