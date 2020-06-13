@@ -105,6 +105,10 @@ let verifySession = (req, res, next) => {
     });
 };
 
+// Make sure Server is working
+app.get("/", (req, res) => {
+  res.send("Server Running");
+});
 /* Route Handlers*/
 
 /*

@@ -1,7 +1,6 @@
 // This file will handle connection logic to mongoDB database
 const mongoose = require("mongoose");
-URI =
-  "mongodb://planner_db:plannerdb1!@ds149404.mlab.com:49404/heroku_xhlthg0t";
+URI = "mongodb://dbowner:dbowner1@ds149404.mlab.com:49404/heroku_xhlthg0t";
 var MONGODB_URI = URI || "mongodb://localhost:27017/AgileScrumPlanner";
 
 mongoose.Promise = global.Promise;
