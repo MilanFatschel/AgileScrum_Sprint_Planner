@@ -5,6 +5,12 @@ const jwt = require("jsonwebtoken");
 
 const app = express();
 
+// Set Port
+app.set("port", process.env.PORT || 5000);
+
+// Listen
+app.listen(process.env.PORT || 5000);
+
 // Load in mongoose models
 const { Sprint, Story, Task, User } = require("./db/models/index");
 
