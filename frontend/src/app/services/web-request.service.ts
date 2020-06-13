@@ -8,7 +8,7 @@ export class WebRequestService {
   readonly ROOT_URL;
 
   constructor(private http: HttpClient) {
-    this.ROOT_URL = process.env.PORT;
+    this.ROOT_URL = 'https://sprint-planner-backend.herokuapp.com';
   }
 
   get(uri: string) {
