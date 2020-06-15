@@ -1,44 +1,45 @@
 <div class="centered-content">
   <div class="task-manager-container">
     <div class="side-bar has-background-white">
-      <h1 class="title has-text-primaary">
-        Sprints
-      </h1>
-      <div class="list-menu">
-        <div class="sprint-scroll-container">
-          <a
-            class="list-menu-item"
-            *ngFor="let sprint of sprints"
-            [routerLink]="['/sprints', sprint._id]"
-            routerLinkActive="is-active"
-          >
-            <p>{{ sprint.title }}</p>
-            <div class="sprint-buttons">
-              <button
-                class="button is-danger side-bar-delete-button"
-                (click)="onDeleteSprintClick(sprint._id)"
-              >
-                <div class="icon">
-                  <i class="fas fa-trash"></i>
-                </div>
-              </button>
-            </div>
-          </a>
+      <div class="top-bar">
+        <div class="title">
+          Sprints
         </div>
       </div>
-
-      <button
-        class="button is-primary has-text-white sprint-add-button"
-        (click)="onAddSprintClick()"
-      >
-        + New Sprint
-      </button>
+      <div class="list-menu">
+        <a
+          class="list-menu-item"
+          *ngFor="let sprint of sprints"
+          [routerLink]="['/sprints', sprint._id]"
+          routerLinkActive="is-active"
+        >
+          <p>{{ sprint.title }}</p>
+          <div class="sprint-buttons">
+            <button
+              class="button is-danger side-bar-delete-button"
+              (click)="onDeleteSprintClick(sprint._id)"
+            >
+              <div class="icon">
+                <i class="fas fa-trash"></i>
+              </div>
+            </button>
+          </div>
+        </a>
+      </div>
+      <div class="button-panel">
+        <button
+          class="button is-primary has-text-white sprint-add-button"
+          (click)="onAddSprintClick()"
+        >
+          + New Sprint
+        </button>
+      </div>
     </div>
     <div class="story-container">
       <div class="top-bar">
-        <h1 class="title">
+        <div class="title">
           Stories
-        </h1>
+        </div>
         <button
           class="button is-primary has-text-white story-add-button"
           (click)="onAddStoryClick()"
