@@ -1,7 +1,7 @@
 
 
 # AgileScrum_Sprint_Planner
-Agile/Scrum Sprint Planner built with the MEAN stack. A sprint planner that helps users keep track of their stories and tasks.
+Agile/Scrum Sprint Planner built with the MEAN stack. A sprint planner that helps users keep track of their stories and tasks similar to devops.
 
 visit https://agilescrum-sprint-planner.herokuapp.com/ to see the app live!
 
