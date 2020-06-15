@@ -29,8 +29,11 @@
       </button>
     </div>
   </div>
-  <div style="font-weight: bold; font-size: small;">
+  <div *ngIf="task.state !== '3'" style="font-weight: bold; font-size: small;">
     Hours: {{ task.hours }}
+  </div>
+  <div *ngIf="task.state === '3'" style="font-weight: bold; font-size: small;">
+    Hours: Done
   </div>
   <div
     style="
