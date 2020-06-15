@@ -13,7 +13,7 @@ Building locally:  <br/>
 5. Open a browser and visit http://localhost:8080/ <br/>
 
 
-Building the server locally: <br/>
+Using the server-side locally: <br/>
 1. Clone this project <br/>
 2. cd api  <br/>
 3. npm install  <br/>
