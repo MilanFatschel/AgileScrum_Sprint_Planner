@@ -15,7 +15,8 @@ app.listen(process.env.PORT || 5000);
 const { Sprint, Story, Task, User } = require("./db/models/index");
 
 // Load Middlewear
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // To parse the incoming requests with JSON payloads
 
 // CORS HEADERS MIDDLEWARE
 app.use(function (req, res, next) {
