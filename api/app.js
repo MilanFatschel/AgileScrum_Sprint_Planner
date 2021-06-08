@@ -1,5 +1,6 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const mongoDB = require("./db/mongoose");
 
 const app = express();
 
@@ -514,10 +515,9 @@ app.post("/users/login", (req, res) => {
           })
           .then((authTokens) => {
             // Now we construct and send the response to the user with their auth tokens in the header and the user object in the body
-            res
-              .header("x-refresh-token", authTokens.refreshToken)
-              .header("x-access-token", authTokens.accessToken)
-              .send(user);
+            res.setHeader("x-refresh-token", authTokens.refreshToken);
+            res.setHeader("x-access-token", authTokens.accessToken);
+            res.send(user);
           });
       } else {
         res.send({ message: 404 });
@@ -562,7 +562,3 @@ let deleteTasksFromStory = (_storyId) => {
     _storyId,
   }).then(() => {});
 };
-
-app.listen(3000, () => {
-  console.log("Server Started.");
-});
