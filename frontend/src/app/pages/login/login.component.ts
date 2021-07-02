@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   errorText: String = '';
   usernameInputText: String = '';
   passwordInputText: String = '';
+  isLoading: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -27,13 +28,16 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginButtonClicked(username: string, password: string) {
+    this.isLoading = true;
     this.authService
       .login(username, password)
       .subscribe((res: HttpResponse<any>) => {
         if (res.body.message == 404) {
+          this.isLoading = false;
           this.errorText = 'User not found. Please check your credentials.';
           return;
         } else if (res.status == 200) {
+          this.isLoading = false;
           this.router.navigate(['/sprints']);
         }
       });

@@ -22,6 +22,7 @@ export class StoryViewComponent implements OnInit {
   stories: Story[];
 
   selectedSprintId: string;
+  isLoading: boolean = false;
 
   constructor(
     private sprintService: SprintService,
@@ -34,11 +35,13 @@ export class StoryViewComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       if (params.sprintId) {
+        this.isLoading = true;
         this.selectedSprintId = params.sprintId;
         this.sprintService
           .getStories(params.sprintId)
           .subscribe((stories: Story[]) => {
             this.stories = stories;
+            this.isLoading = false;
           });
       } else {
         this.stories = null;

@@ -19,6 +19,7 @@ export class SignUpComponent implements OnInit {
   errorText: String = '';
   minPasswordLength = 8;
   minUsernameLength = 4;
+  isLoading: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -55,13 +56,16 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(username: string, password: string) {
+    this.isLoading = true;
     this.authService
       .signup(username, password)
       .subscribe((res: HttpResponse<any>) => {
         if (res.body.message == 403) {
           this.errorText = 'Username taken. Please choose another.';
+          this.isLoading = false;
           return;
         } else if (res.status == 200) {
+          this.isLoading = false;
           const dialogRef = this.dialog.open(SignUpSuccessComponent);
           dialogRef.afterClosed().subscribe(() => {
             this.router.navigate(['/login']);

@@ -67,10 +67,13 @@
           </div>
         </div>
       </div>
-      <div *ngIf="!stories" class="empty-text-container">
+      <div *ngIf="isLoading" class="empty-text-container">
+        <h3 class="empty-text"><mat-progress-spinner *ngIf="isLoading" mode="indeterminate" [diameter]="30"></mat-progress-spinner></h3>
+      </div>
+      <div *ngIf="!isLoading && !stories" class="empty-text-container">
         <h3 class="empty-text">Select a sprint to get started!</h3>
       </div>
-      <div *ngIf="stories && stories.length === 0" class="empty-text-container">
+      <div *ngIf="!isLoading && stories && stories.length === 0" class="empty-text-container">
         <h3 class="empty-text">
           There are currently no stories for this sprint, click the "+ New
           Story" button to create one!

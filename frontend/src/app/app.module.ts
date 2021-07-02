@@ -9,6 +9,7 @@ import { StoryViewComponent } from './pages/story-view/story-view.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NewSprintComponent } from './pages/new-sprint/new-sprint.component';
@@ -51,6 +52,7 @@ import { SignUpSuccessComponent } from './pages/sign-up-success/sign-up-success.
     MatDialogModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {

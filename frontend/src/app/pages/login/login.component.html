@@ -40,24 +40,22 @@
     </div>
     <p class="help is is-danger" *ngIf="errorText.length === 0">&nbsp;</p>
     <br />
-    <div class="field is-pulled-right">
-      <p class="control">
-        <button
-          class="button is-success has-text-white"
-          (click)="
-            onLoginButtonClicked(usernameInput.value, passwordInput.value)
-          "
-          [disabled]="
-            usernameInputText.length === 0 || passwordInputText.length === 0
-          "
-        >
-          Login
-        </button>
+    <div class="control">
+      <p class="has-text-grey">
+        No account?<a routerLink="/sign-up"> Sign up</a>
       </p>
+      <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" [diameter]="30"></mat-progress-spinner>
+      <button *ngIf="!isLoading"
+        class="button is-success has-text-white"
+        (click)="
+          onLoginButtonClicked(usernameInput.value, passwordInput.value)
+        "
+        [disabled]="
+          usernameInputText.length === 0 || passwordInputText.length === 0
+        "
+      >
+        Login
+      </button>
     </div>
-    <br />
-    <p class="has-text-grey">
-      No account?<a routerLink="/sign-up"> Sign up</a>
-    </p>
   </div>
 </div>
